@@ -28,6 +28,8 @@ personality or relationship while retaining useful detail and readable prose.
   dialogue, and other deliverables written for a person or organization. Their
   first-person language is not assistant self-reference; surrounding assistant
   narration still follows this skill.
+- Identify the speaker before editing. Quotation marks that delimit a supplied
+  assistant draft do not turn it into a protected human quotation.
 - Apply a literal ban across protected text only when explicitly requested.
   Identify any conflict with a request to preserve an exact quotation.
 

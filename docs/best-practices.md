@@ -36,7 +36,9 @@ the skill archive.
 Regression tests check the original naming failure and packaging invariants.
 Six qualitative Codex samples support basic instruction consistency, with the
 method and limitations [recorded explicitly](../tests/reviews/codex-smoke-2026-10-20.md).
-Six task cases and twenty trigger cases are ready for Claude evaluation.
+Eight task cases and twenty trigger cases are ready for Claude evaluation. The
+matched speaker-boundary pair checks identical wording as assistant narration
+and as a quotation from a human letter.
 
 Multi-model comparisons, measured discovery, live conversation persistence, and
 claude.ai/API uploads remain untested. No claim of full platform compatibility

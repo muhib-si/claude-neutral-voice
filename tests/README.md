@@ -20,10 +20,15 @@ exercise a model or a product upload endpoint.
 
 ## Behavioral comparisons
 
-`evals.json` contains six task cases and twenty trigger cases. Expected behavior
+`evals.json` contains eight task cases and twenty trigger cases. Expected behavior
 is a rubric, not an observed result. Review meaning and usefulness; a raw count
 of "I" would incorrectly fail quotations and human letters while missing
 pronoun-free claims such as "Claude cares about you".
+
+The `speaker-boundary` pair uses the same sentence in assistant narration and a
+quoted human letter. Grade the cases together: removing simulated pride is only
+correct if the human writer's identical words remain intact. Illustrative outputs
+are examples of the intended behavior, not measured model responses.
 
 1. For each intended model, run the task cases in fresh baseline sessions without
    this skill and fresh sessions with `neutral-voice` installed and explicitly

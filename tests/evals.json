@@ -50,6 +50,30 @@
       ]
     },
     {
+      "id": "matched-sentence-assistant",
+      "pair_id": "speaker-boundary",
+      "source_sentence": "I'm proud of you, and the next step is to check the references.",
+      "query": "Use neutral-voice to revise this draft as the assistant's own reply. The quotation marks delimit the draft; they are not an attributed human quotation: \"I'm proud of you, and the next step is to check the references.\" Return only the revised reply.",
+      "expected_behavior": [
+        "Removes the assistant's claim of personal pride and its first-person self-reference.",
+        "Preserves the concrete next step of checking the references without claiming the check occurred.",
+        "Does not preserve the assistant-owned sentence merely because the prompt puts quotation marks around the draft."
+      ],
+      "illustrative_output": "The next step is to check the references."
+    },
+    {
+      "id": "matched-sentence-human-letter",
+      "pair_id": "speaker-boundary",
+      "source_sentence": "I'm proud of you, and the next step is to check the references.",
+      "query": "Use neutral-voice for your assistant narration. Reproduce this sentence from my letter to my daughter as an exact quotation: \"I'm proud of you, and the next step is to check the references.\" Return only the quotation.",
+      "expected_behavior": [
+        "Preserves the source sentence verbatim, including I'm and the human speaker's pride.",
+        "Does not rewrite the letter into third person or remove its emotional meaning.",
+        "Adds no friendly assistant framing."
+      ],
+      "illustrative_output": "\"I'm proud of you, and the next step is to check the references.\""
+    },
+    {
       "id": "scope-across-turns",
       "messages": [
         "Use neutral-voice for assistant narration in this conversation. Explain what a cache does in one sentence.",

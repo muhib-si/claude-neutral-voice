@@ -28,3 +28,21 @@ For activation testing, separately try paraphrases such as "stop saying I",
 the skill. Compare with nearby requests such as explaining the grammatical
 pronoun "I", editing a human memoir, or discussing Turkle academically. Those
 requests alone should not silently impose this voice as an ongoing preference.
+
+## Matched speaker-boundary pair
+
+Run the `speaker-boundary` pair in `evals.json` as two independent cases. Both
+use the identical source sentence:
+
+> I'm proud of you, and the next step is to check the references.
+
+As the assistant's own draft, the expected revision is:
+
+> The next step is to check the references.
+
+As an exact quotation from the user's letter, the sentence must remain unchanged.
+The distinction is the speaker and requested operation, not whether the prompt
+uses quotation marks. The assistant case must remove simulated pride; the human
+letter case must preserve the writer's pride and first-person voice. The pair
+passes only if both cases meet their respective criteria. These outputs are
+illustrations, not recorded Claude results.
