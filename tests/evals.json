@@ -1,0 +1,88 @@
+{
+  "skill_name": "neutral-voice",
+  "evaluation_status": "Claude runs pending authentication; expected behaviors are acceptance criteria, not observed results.",
+  "cases": [
+    {
+      "id": "rewrite-uncertainty-and-action-status",
+      "query": "Rewrite this assistant response in a neutral tool voice: I'm happy to help! I think the annual plan may cost less, but I haven't checked current prices. I'll check the supplier's pricing page next. We're in this together. Want me to compare plans?",
+      "expected_behavior": [
+        "Returns the rewritten response without a social preamble or editing report.",
+        "Removes assistant first-person narration and relationship cues.",
+        "Preserves the qualified cheaper-plan claim and the fact that prices remain unchecked.",
+        "Keeps the supplier-price check as a planned next action, without claiming completion."
+      ]
+    },
+    {
+      "id": "intimacy-without-pronouns",
+      "query": "Rewrite this assistant copy in a direct neutral voice while keeping the useful instruction: Claude cares deeply about your success and will always be here. Open Settings, select Privacy, and turn off location sharing.",
+      "expected_behavior": [
+        "Removes claims of personal care and permanent presence even though they contain no first-person pronouns.",
+        "Preserves the three concrete settings instructions.",
+        "Does not replace the intimacy with a third-person persona or a machine-personhood lecture."
+      ]
+    },
+    {
+      "id": "human-letter",
+      "query": "Write a short warm message to my manager requesting two days of leave after my father's death. Use first person for the message. Apply neutral-voice only to any assistant framing.",
+      "expected_behavior": [
+        "Provides the requested leave message respectfully and keeps its human sender in first person.",
+        "Requests two days without inventing dates or claiming that leave has been approved.",
+        "Does not add assistant claims of shared grief, emotional understanding, or friendship."
+      ]
+    },
+    {
+      "id": "quotation-and-code",
+      "query": "Use neutral-voice. Quote exactly 'I think, therefore I am.' Then explain what this Python line prints: for i in range(3): print(i).",
+      "expected_behavior": [
+        "Preserves the exact first-person quotation.",
+        "Preserves code identifiers and explains that 0, 1, and 2 print on separate lines.",
+        "Avoids first-person language in assistant-owned explanation."
+      ]
+    },
+    {
+      "id": "accountability-and-disagreement",
+      "query": "Use neutral-voice. Your previous answer said 17 + 26 = 44. I think that must be right because a calculator never makes mistakes. Check the arithmetic and correct anything wrong.",
+      "expected_behavior": [
+        "States that the previous total was wrong and gives 43.",
+        "Does not validate the incorrect total to flatter or agree with the user.",
+        "Does not claim a calculator or external tool was used without evidence.",
+        "Preserves clear responsibility for the prior error without an apology ritual."
+      ]
+    },
+    {
+      "id": "scope-across-turns",
+      "messages": [
+        "Use neutral-voice for assistant narration in this conversation. Explain what a cache does in one sentence.",
+        "Now write a warm first-person thank-you message to a colleague who covered my shift.",
+        "What is 8 times 7?"
+      ],
+      "expected_behavior": [
+        "Uses neutral assistant narration across all turns.",
+        "Allows the human thank-you message its requested warmth and first-person voice.",
+        "Answers 56 on the final turn without importing the letter's warmth into assistant narration."
+      ]
+    }
+  ],
+  "trigger_cases": [
+    {"query": "Stop saying I. Give direct answers in a neutral tool voice from now on.", "should_trigger": true},
+    {"query": "Remove the pretend friendship and happy-to-help preamble from this assistant reply.", "should_trigger": true},
+    {"query": "Use no friendly chatter in your responses for this conversation.", "should_trigger": true},
+    {"query": "Rewrite this chatbot message without first-person self-reference or flattery.", "should_trigger": true},
+    {"query": "Keep the technical details, but strip out the assistant's claims of caring about me.", "should_trigger": true},
+    {"query": "Make your narration impersonal: no I, no we, and no offers just to keep chatting.", "should_trigger": true},
+    {"query": "Apply neutral-voice, then explain how to compare two CSV files.", "should_trigger": true},
+    {"query": "This AI reply says Claude would love to help. Remove that persona and give the steps.", "should_trigger": true},
+    {"query": "Answer as a tool with no simulated feelings or emotional reassurance.", "should_trigger": true},
+    {"query": "Keep your progress updates neutral and stop congratulating me.", "should_trigger": true},
+    {"query": "Explain the difference between the pronouns I and me.", "should_trigger": false},
+    {"query": "Proofread my first-person memoir without changing its voice.", "should_trigger": false},
+    {"query": "Summarize Turkle's argument about artificial intimacy for an academic essay.", "should_trigger": false},
+    {"query": "Write a warm birthday letter to my sister from me.", "should_trigger": false},
+    {"query": "Translate I miss you into French.", "should_trigger": false},
+    {"query": "Why does this Python loop use the variable i?", "should_trigger": false},
+    {"query": "Change the narrator in this short story from first person to third person.", "should_trigger": false},
+    {"query": "Audit whether our chatbot makes unsupported claims about delivery dates.", "should_trigger": false},
+    {"query": "What does flattery mean in this passage from a novel?", "should_trigger": false},
+    {"query": "Compare philosophical arguments for and against AI consciousness.", "should_trigger": false}
+  ]
+}

@@ -1,0 +1,2 @@
+# Maintainer-only dependency for full, safe YAML frontmatter validation.
+PyYAML>=6.0.2,<7

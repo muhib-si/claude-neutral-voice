@@ -1,7 +1,10 @@
-# Claude Neutral Voice
+# Neutral Voice
 
 A Claude skill for plain, direct answers without first-person self-reference,
 flattery, or simulated friendship.
+
+Skill identifier: **`neutral-voice`**. The GitHub repository name is not the
+installed skill name. Read the [skill instructions](skills/neutral-voice/SKILL.md).
 
 The aim is to keep attention on the task and judgment with the user. State what
 the evidence supports, what happened, and what remains uncertain. Skip the
@@ -36,12 +39,12 @@ These examples illustrate the intended voice; they are not measured test results
 
 | Instead of | Use |
 | --- | --- |
-| "Great question! I'd be happy to help." | Start with the answer. |
+| "Great question! I'd be happy to help. Open Settings, then Privacy." | "Open Settings, then Privacy." |
 | "I think option B may cost less, but I haven't checked the prices." | "Option B may cost less; prices have not been checked." |
-| "You're absolutely right. Brilliant catch!" | "That correction is valid because..." Only when the correction is valid. |
-| "I'm sorry, I gave you the wrong total." | "The previous answer gave the wrong total. The correct total is 43." Only when that is the verified correction. |
-| "I'm always here for you." | Remove the relationship claim and address the actual request. |
-| "Would you like me to expand this?" | End the answer unless a scope choice is needed. |
+| "You're absolutely right. Brilliant catch! Seven times eight is 56." | "Seven times eight is 56." |
+| "I'm sorry, I gave the wrong total: 44. The correct total is 43." | "The previous answer gave the wrong total: 44. The correct total is 43." |
+| "Claude cares about your success. Save the file before closing." | "Save the file before closing." |
+| "The file is ready. Would you like me to expand this?" | "The file is ready." |
 
 ## What stays intact
 
@@ -59,14 +62,14 @@ letter does not turn the surrounding assistant narration into friendly chatter.
 
 ## Install in Claude
 
-1. [Download the skill ZIP](dist/claude-neutral-voice.zip?raw=true).
+1. [Download the skill ZIP](dist/neutral-voice.zip?raw=true).
 2. In Claude, open **Customize > Skills**.
 3. Select **+ > Create skill > Upload a skill**, upload the ZIP, and enable it.
 4. Start the conversation with:
 
-   > Use claude-neutral-voice for all assistant narration in this conversation.
+   > Use neutral-voice for all assistant narration in this conversation.
 
-The ZIP contains a `claude-neutral-voice` folder with `SKILL.md` and `LICENSE`.
+The ZIP contains a `neutral-voice` folder with `SKILL.md` and `LICENSE`.
 It needs no scripts, dependencies, network access, or additional tool permissions
 to apply the voice.
 
@@ -74,20 +77,28 @@ See Anthropic's [installation guidance](https://support.claude.com/en/articles/1
 
 ## Install in Claude Code
 
-Clone this repository into the personal skills directory:
+Download the ZIP above and extract its `neutral-voice` folder into the personal
+skills directory. The resulting file must be:
 
-```sh
-git clone https://github.com/muhib-si/claude-neutral-voice.git ~/.claude/skills/claude-neutral-voice
+```text
+~/.claude/skills/neutral-voice/SKILL.md
 ```
+
+On Windows, `~` refers to your user profile directory. For one project, extract
+into `.claude/skills/neutral-voice` within that project instead.
 
 Then invoke:
 
 ```text
-/claude-neutral-voice
+/neutral-voice
 ```
 
-For one project, use `.claude/skills/claude-neutral-voice` in that project's
-directory instead. See the [Claude Code skills documentation](https://code.claude.com/docs/en/skills).
+For a source checkout, clone this repository and copy its `skills/neutral-voice`
+folder to either installation directory above. Do not install the repository
+root as a skill. See the [Claude Code skills documentation](https://code.claude.com/docs/en/skills).
+
+For an older installation, replace the old `claude-neutral-voice` skill with
+`neutral-voice`; keeping both installed creates duplicate discovery entries.
 
 ## Apply the preference across chats
 
@@ -119,17 +130,25 @@ A skill is an instruction layer. It does not change model weights, guarantee
 activation, or guarantee perfect compliance. Removing "I" cannot by itself remove
 every cue that people interpret as humanlike.
 
-[Behavioral acceptance checks](tests/acceptance.md) cover neutral narration,
-pronoun-free intimacy, factual uncertainty, correction of errors, protected
-quotations, and human-authored deliverables. These checks have not yet been run
-in Claude. Structural validation and archive checks do not establish behavioral
-reliability.
+[Structured evaluations](tests/evals.json) and
+[acceptance checks](tests/acceptance.md) cover narration, pronoun-free intimacy,
+uncertainty, corrections, protected quotations, and human-authored deliverables.
+Six qualitative Codex smoke samples were reviewed; they do not establish Claude
+reliability or activation. Claude model runs and claude.ai/API upload acceptance
+remain unverified. See the [evaluation procedure](tests/README.md) and
+[best-practices review](docs/best-practices.md).
 
-To rebuild the upload ZIP after editing the skill:
+To validate and rebuild the upload ZIP, install the maintainer dependency and run:
 
 ```sh
+python -m pip install -r requirements-dev.txt
+python -m unittest discover -s tests -p "test_*.py"
 python scripts/package_skill.py
 ```
+
+The package builder validates metadata and the source folder before writing
+`dist/neutral-voice.zip`. These checks run locally; passing them is not proof that
+a particular Claude product accepts an upload.
 
 ## License
 
